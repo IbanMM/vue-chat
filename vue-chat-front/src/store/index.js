@@ -25,7 +25,7 @@ const moduleUsers = {
          * 
          */
 
-        SET_USER(state,user) {
+        SET_USER( state, user ) {
 
             state.users.push(user)
 
@@ -52,11 +52,65 @@ const moduleUsers = {
 
 }
 
+// ----------------------------------------------------------
+// Vuex module for Messages
+// ----------------------------------------------------------
+const moduleMessages = {
+
+    state: {
+  
+        messages: []
+  
+    },
+  
+  
+      mutations: {
+  
+        /** 
+         * Add a message to the state
+         * 
+         * @param state
+         * @param message
+         * 
+         */
+  
+        SET_MESSAGE( state, messages) {
+
+            console.log('menssage to vuex')
+            state.messages.push(messages)
+
+        }
+  
+      },
+  
+      getters: {
+  
+        /** 
+         * Return the current messages
+         * 
+         * @param state
+         * 
+         */
+  
+        getMessages: state => {
+
+            return state.messages
+
+        }
+  
+    }
+  
+}
+
+// ----------------------------------------------------------
+// Vuex modules
+// ----------------------------------------------------------
 const store =  new Vuex.Store({
 
     modules: {
 
-        users: moduleUsers
+        users: moduleUsers,
+        messages: moduleMessages
 
     }
 

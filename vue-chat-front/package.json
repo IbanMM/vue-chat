@@ -1,14 +1,15 @@
 {
   "name": "vue-chat-front",
   "version": "0.1.0",
-  "author": "iban.moreno.martin@protonmail.com",
   "private": true,
+  "author": "iban.moreno.martin@protonmail.com",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "register-service-worker": "^1.7.1",
     "socket.io-client": "^2.3.0",
@@ -24,11 +25,13 @@
     "@vue/cli-plugin-router": "~4.3.0",
     "@vue/cli-plugin-vuex": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
+    "axios": "^0.18.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
+    "vue-cli-plugin-axios": "0.0.4",
     "vue-template-compiler": "^2.6.11"
   }
 }

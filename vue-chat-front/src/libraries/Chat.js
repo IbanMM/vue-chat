@@ -22,13 +22,9 @@ class Chat {
 
         this.vuex = store
 
-        /*
-        console.log(store)
+        this.socket = io.connect( `http://${url}:${port}` )
 
-        this.vuex.commit('SET_USER','giban')
-        */
-
-        this.socket = io.connect(`http://${url}:${port}`)
+        this.emitNewConnection()
 
         this.socket.on('user-setup', (user) => {
 
@@ -38,8 +34,11 @@ class Chat {
             
         });
 
-        this.emitNewConnection()
+        this.socket.on('getNewMessage', (message) => {
 
+            this.getNewMessage(message);
+            
+        });
 
     }
 
@@ -50,6 +49,57 @@ class Chat {
     emitNewConnection() {
 
         this.socket.emit('connection', () => {})
+
+    }
+
+    /**
+     * New message from server
+     * @param message Object
+     */
+
+    getNewMessage(message) {
+
+        this.audio.playNotification()
+        this.vuex.commit('SET_MESSAGE', message)
+
+    }
+    
+
+    /**
+     * New message to the server
+     * @param text String
+     */
+
+    emitNewMessage(text) {
+
+        let id = this.createID()
+
+        let date = new Date(id)
+        let hours = date.getHours()
+        let minutes = date.getMinutes()
+
+        let message = {
+            id: id,
+            user: '',
+            text: text,
+            date: `${hours}:${minutes}`,
+            state: 'send'
+        }
+
+        this.socket.emit('sendNewMessage', message)
+
+    }
+
+    /**
+     * Return a timestamp to use as id
+     * @param message Object
+     */
+
+    createID() {
+
+        let id =  new Date().getTime()
+
+        return id
 
     }
 
