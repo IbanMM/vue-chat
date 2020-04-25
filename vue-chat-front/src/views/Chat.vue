@@ -1,5 +1,12 @@
 <template>
     <div>
+        <section class="styx-chat__users">
+            <ul>
+                <li v-for="(user,index) in users" :key="index">
+                    <span>{{user.name}}</span>
+                </li>
+            </ul>
+        </section>
         <section class="styx-chat">
 
             <section class="styx-chat__timeline">
@@ -42,7 +49,8 @@
 
 <script>
 
-    import Sound from '@/libraries/Sound'
+    import { mapGetters } from 'vuex'
+    import Chat from '@/libraries/Chat'
 
     export default {
 
@@ -50,17 +58,19 @@
 
             return {
 
-                sound: new Sound
+                chat: new Chat('localhost','3006'),
 
             }
 
         },
 
-        created () {
-
-            this.sound.playNotification()
-
-        }
+        computed: {
+        // mix the getters into computed with object spread operator
+        ...mapGetters({
+            users: 'getUsers'
+        // ...
+        })
+    }
         
     }
 </script>
