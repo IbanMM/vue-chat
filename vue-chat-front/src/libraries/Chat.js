@@ -41,33 +41,39 @@ class Chat {
         let user = this.vuex.getters.getLoginUser
         let user_name = user.name
         
-        this.socket = io.connect( `http://${this.url}:${this.port}`,{ query: `user=${user_name}` } )
+        this.socket = io.connect( `http://${this.url}:${this.port}`, { query: `user=${user_name}` } )
+
+        this.socket.on('getUsersOnline', (data) => {
+
+            this.vuex.commit('SET_LOGIN_USER_SOCKET', this.socket.id)
+            this.setListOfUsers(data.users)
+            
+        })
 
         this.socket.on('getUsersOnline', (data) => {
 
             this.setListOfUsers(data.users)
             
-        });
+        })
 
-        this.socket.on('getUsersOnline', (data) => {
+        this.socket.on('getNewUserOnline', (data) => {
 
-            this.setListOfUsers(data.users)
+            this.setNewUserOnline(data)
             
-        });
+        })
 
         this.socket.on('getUserOffline', (data) => {
 
             this.setUserOffline(data.socket)
             
-        });
+        })
 
         this.socket.on('getNewMessage', (message) => {
 
             this.getNewMessage(message);
             
-        });
+        })
         
-
     }
 
     /**
@@ -76,11 +82,28 @@ class Chat {
      */
     setListOfUsers(users) {
 
+        let user_logged = this.vuex.getters.getLoginUser
+
         users.forEach(user => {
 
-            this.vuex.commit('SET_USER', user)
+            if(user.name != user_logged.name ) {
+
+                this.vuex.commit('SET_USER', user)
+
+            }
 
         })
+
+    }
+
+    /**
+     * Add new user online
+     * @param user Object
+     */
+
+    setNewUserOnline(user) {
+
+        this.vuex.commit('SET_USER', user)
 
     }
 
@@ -88,6 +111,7 @@ class Chat {
      * Remove user online
      * @param socket String
      */
+
     setUserOffline(socket) {
 
         this.vuex.commit('REMOVE_USER', socket)
@@ -129,8 +153,8 @@ class Chat {
         let id = this.createID()
 
         let date = new Date(id)
-        let hours = date.getHours()
-        let minutes = date.getMinutes()
+        let hours = this.add0(date.getHours())
+        let minutes = this.add0(date.getMinutes())
 
         let message = {
             id: id,
@@ -159,6 +183,24 @@ class Chat {
         let id =  new Date().getTime()
 
         return id
+
+    }
+
+    /**
+     * Add 0 to 1 digit values
+     * @param value Number
+     */
+    add0(value) {
+
+        if(value < 10) {
+
+            return '0' + value
+
+        } else {
+
+            return value
+
+        }
 
     }
 

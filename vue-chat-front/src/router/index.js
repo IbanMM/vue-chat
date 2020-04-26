@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -31,7 +32,9 @@ const router = new VueRouter({
 
 router.beforeEach((to,from,next) => {
 
-    const loggedIn = localStorage.getItem('user')
+    //const loggedIn = localStorage.getItem('user')
+    
+    const loggedIn = store.getters.getLogin
 
     if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
 

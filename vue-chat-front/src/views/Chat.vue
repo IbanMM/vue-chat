@@ -2,9 +2,9 @@
 
     <div class="styx-chat__layout">
 
-    <div class="styx-chat__header"></div>
-
         <section class="styx-chat__users">
+
+            <h4 class="styx-chat__users_title">Users online: {{users.length}}</h4>
 
             <ChatUser v-for="(user,index) in users" :key="index"
                 :name="user.name"
@@ -39,15 +39,17 @@
 
                     <input type="text" v-model="message" class="styx-chat__form__input">
 
-                    <button type="submit" class="styx-chat__form__submit"></button>
+                    <button type="submit" class="styx-chat__form__submit">
+
+                        <PaperPlane />
+
+                    </button>
 
                 </form>
 
             </section>
 
         </section>
-
-        <div class="styx-chat__footer"></div>
 
     </div>
     
@@ -59,6 +61,7 @@
     import Chat from '@/libraries/Chat'
     import ChatMessage from '@/components/ChatMessage'
     import ChatUser from '@/components/ChatUser'
+    import PaperPlane from '@/assets/svg/send-message.svg'
 
     export default {
 
@@ -77,7 +80,8 @@
         components: {
 
             ChatMessage,
-            ChatUser
+            ChatUser,
+            PaperPlane
 
         },
 
@@ -86,10 +90,8 @@
             newMessage() {
 
                 if(this.message !== '') {
-
-                    let user_message = this.$store.getters.getUser(this.user)
                     
-                    this.chat.emitNewMessage(this.message,user_message.socket)
+                    this.chat.emitNewMessage(this.message,this.user.socket)
 
                     this.message = ''
 
@@ -126,9 +128,3 @@
     }
 
 </script>
-
-<style lang="scss">
-    @import '@/assets/scss/styx-layout.scss';
-    @import '@/assets/scss/styx-chat.scss';
-    @import '@/assets/scss/styx-users.scss';
-</style>

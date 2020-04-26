@@ -3,39 +3,72 @@
     max-width: 61.875rem;
     width: 100%;
     margin: 0 auto;
-    height: 100vh;
+    height: calc(100vh - 175px);
     display: grid;
     grid-template-columns: 150px 150px 1fr 1fr 1fr 1fr;
-    grid-template-rows: [row1-start] 100px [row1-end] auto [third-line] 200px [last-line];
+    grid-template-rows: auto;
     grid-template-areas: 
-        "header header header header header header"
         "chat chat chat chat chat chat"
-        "users users users users users users"
-        "footer footer footer footer footer footer";
+        "users users users users users users";
 
     @media all and (min-width: 992px) {
 
         grid-template-areas: 
-        "header header header header header header"
-        "users users chat chat chat chat"
-        "footer footer footer footer footer footer";
+        "users users chat chat chat chat";
 
     }
 
 }
 
 .styx-chat__header {
-  
+    
+    max-width: 61.875rem;
+    margin: 0 auto;
     grid-area: header;
-    background-color: blue;
+    //background-color: blue;
     height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    z-index: $z-index-header;
+
+    svg {
+
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%,0);
+        margin-top: 0.5rem;
+        height: 190px;
+        width: auto;
+
+    }
 
 }
 
 .styx-chat__footer {
 
     grid-area: footer;
-    background-color: yellow;
+    background-color: #fff;
     height: 75px;
+
+}
+
+.styx-chat__container {
+
+    max-width: 61.875rem;
+    margin: 0 auto;
+    min-height: calc(100vh - 175px);
+
+}
+
+.styx-chat__form__input {
+
+    width: 100%;
+    display: block;
+    border: 0;
+    font-family: $font-family;
+    width: 100%;
 
 }

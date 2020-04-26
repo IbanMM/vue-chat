@@ -39,7 +39,16 @@
 
             this.$nextTick(() => {
 
-                this.user = this.$store.getters.getUserBySocket(this.socket)
+                if(this.own){
+
+                    this.user = this.$store.getters.getLoginUser
+
+                } else {
+
+                    this.user = this.$store.getters.getUserBySocket(this.socket)
+
+                }
+                
                 this.$emit('scrollToBottom')
 
             })
@@ -49,7 +58,3 @@
     }
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>

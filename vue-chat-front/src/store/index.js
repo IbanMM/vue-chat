@@ -15,7 +15,6 @@ const moduleLogin = {
   
     },
   
-  
     mutations: {
   
         /** 
@@ -31,6 +30,19 @@ const moduleLogin = {
             state.user = user
             localStorage.removeItem('user')
             localStorage.setItem('user', JSON.stringify(user))
+
+        },
+
+        /** 
+         * Add the socket id to the log user
+         * 
+         * @param state
+         * @param socket String
+         * 
+         */
+        SET_LOGIN_USER_SOCKET( state, socket ) {
+
+            state.user.socket = socket
 
         },
 
@@ -89,7 +101,7 @@ const moduleUsers = {
 
   state: {
 
-      users: []
+        users: []
 
   },
 

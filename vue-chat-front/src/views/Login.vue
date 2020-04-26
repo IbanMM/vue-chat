@@ -1,14 +1,42 @@
 <template>
 
-    <div>
+    <div class="styx-chat__container styx-chat__login__container">
 
-        <form action="" @submit.prevent="sendUser">
+        <form class="styx-chat__login" action="" @submit.prevent="sendUser">
 
-            <input v-model="user.name" type="text">
+            <div class="styx-chat__form__inputgroup">
+                <label class="styx-chat__login__label" for="User">User</label>
+                <input class="styx-chat__login__input" v-model="user.name" type="text" >
+            </div>
 
-            <input v-model="user.password" type="password">
+            <div class="styx-chat__form__inputgroup">
+                <label class="styx-chat__login__label" for="User">Password</label>
+                <input class="styx-chat__login__input" v-model="user.password" type="password">
+            </div>
 
-            <button type="submit">Enviar</button>
+            <button clasS="styx-chat__login__submit" type="submit">
+
+                <span v-if="!loading">
+
+                    Login
+
+                </span>
+
+                <Loading v-else
+                    :radius="20"
+                    :stroke="3"
+                    :progress="95"
+                />
+
+            </button>
+
+            <div class="styx-chat__login__error" v-if="errors.length">
+
+                <span v-for="(error,index) in errors" :key="index">
+                    {{error}}
+                </span>
+
+            </div>
 
         </form>
 
@@ -19,6 +47,7 @@
 <script>
 
     import axios from 'axios'
+    import Loading from '@/components/Loading'
 
     export default {
         
@@ -29,9 +58,16 @@
                 user: {
                     name: '',
                     password: ''
-                }
-                
+                },
+                loading: false,
+                errors: []
             }
+
+        },
+
+        components: {
+
+            Loading
 
         },
 
@@ -39,7 +75,7 @@
 
             sendUser() {
 
-                //console.log(this.$axios);
+                this.errors = []
 
                 axios.post(`${process.env.VUE_APP_API_URL}user`,{
                     user: this.user
@@ -49,14 +85,25 @@
                     if(error) {
                         
                         console.log(error)
+                        this.errors.push(error)
 
                     }
 
                     if(res.status == 200) {
 
-                        this.$store.commit('SET_LOGIN', true)
-                        this.$store.commit('SET_LOGIN_USER', res.data.user)
-                        this.$router.push({name:'Chat'})
+
+                        if(res.data.code == 200) {
+
+                            this.$store.commit('SET_LOGIN', true)
+                            this.$store.commit('SET_LOGIN_USER', res.data.user)
+                            this.$router.push({name:'Chat'})
+
+                        } else {
+
+                            console.log(res.data.error)
+                            this.errors.push(res.data.error)
+
+                        }
 
                     }
 
