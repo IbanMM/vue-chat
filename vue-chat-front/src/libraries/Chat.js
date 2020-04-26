@@ -137,10 +137,15 @@ class Chat {
             socket: socket,
             text: text,
             date: `${hours}:${minutes}`,
-            state: 'send'
+            state: 'send',
+            own: false
         }
 
         this.socket.emit('sendNewMessage', message)
+
+        message.own = true
+        
+        this.vuex.commit('SET_MESSAGE', message)
 
     }
 

@@ -28,8 +28,7 @@
   
     grid-area: header;
     background-color: blue;
-    max-height: 300px;
-    height: auto;
+    height: 100px;
 
 }
 
@@ -37,6 +36,6 @@
 
     grid-area: footer;
     background-color: yellow;
-    height: auto;
+    height: 75px;
 
 }

@@ -25,28 +25,9 @@
                         :date="message.date"
                         :text="message.text"
                         :state="message.state"
+                        :own="message.own"
                         @scrollToBottom="scrollToBottom"
                     />
-
-                    <!--
-                    <div class="styx-chat__line styx-chat__line__own" >
-
-                        <div class="styx-chat__line__user">Iban</div>
-
-                        <p class="styx-chat__line__text">este es un texto</p>
-
-                        <time class="styx-chat__line__time" datetime="2008-02-14 20:00">09:00</time>
-
-                    </div>
-
-                    <div class="styx-chat__line styx-chat__line__other" >
-
-                        <p>este es un texto</p>
-
-                        <time datetime="2008-02-14 20:00">09:00</time>
-
-                    </div>
-                    -->
 
                 </section>
 

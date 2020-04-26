@@ -1,6 +1,6 @@
 <template>
 
-    <div class="styx-chat__line styx-chat__line__other" >
+    <div class="styx-chat__line" :class="own ? 'styx-chat__line__own' : 'styx-chat__line__other'">
 
         <div class="styx-chat__line__user">{{user.name}}</div>
 
@@ -21,7 +21,8 @@
             'socket',
             'date',
             'text',
-            'state'
+            'state',
+            'own'
         ],
     
         data() {

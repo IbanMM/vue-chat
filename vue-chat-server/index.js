@@ -92,6 +92,7 @@ io.on('connection', (socket) => {
     /**
      * Broadcast list of users online
      */
+
     io.emit('getUsersOnline', {
         users: us.getUsersOnline()
     });
@@ -103,8 +104,8 @@ io.on('connection', (socket) => {
     
     socket.on('sendNewMessage', (message) => {
 
-        // Broadcast message to all users
-        io.emit('getNewMessage', message)
+        // To all users except sender
+        socket.broadcast.emit('getNewMessage', message)
 
     })
 
