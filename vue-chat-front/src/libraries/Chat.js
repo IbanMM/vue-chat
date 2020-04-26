@@ -22,15 +22,42 @@ class Chat {
 
         this.vuex = store
 
-        this.socket = io.connect( `http://${url}:${port}` )
+        this.url = url
 
-        this.emitNewConnection()
+        this.port = port
 
-        this.socket.on('user-setup', (user) => {
+        this.socket
 
-            console.log(user);
-            this.vuex.commit('SET_USER',user)
-            this.audio.playNotification()
+        this.connect()
+
+    }
+
+    /**
+     * Open connection to the server
+     * @param user Object
+     */
+    connect(){
+
+        let user = this.vuex.getters.getLoginUser
+        let user_name = user.name
+        
+        this.socket = io.connect( `http://${this.url}:${this.port}`,{ query: `user=${user_name}` } )
+
+        this.socket.on('getUsersOnline', (data) => {
+
+            this.setListOfUsers(data.users)
+            
+        });
+
+        this.socket.on('getUsersOnline', (data) => {
+
+            this.setListOfUsers(data.users)
+            
+        });
+
+        this.socket.on('getUserOffline', (data) => {
+
+            this.setUserOffline(data.socket)
             
         });
 
@@ -39,16 +66,44 @@ class Chat {
             this.getNewMessage(message);
             
         });
+        
+
+    }
+
+    /**
+     * Create list of users
+     * @param users Array
+     */
+    setListOfUsers(users) {
+
+        users.forEach(user => {
+
+            this.vuex.commit('SET_USER', user)
+
+        })
+
+    }
+
+    /**
+     * Remove user online
+     * @param socket String
+     */
+    setUserOffline(socket) {
+
+        this.vuex.commit('REMOVE_USER', socket)
 
     }
 
     /**
      * When a new connection is created
+     * @param user Object
      */
 
     emitNewConnection() {
 
-        this.socket.emit('connection', () => {})
+        let user = this.vuex.getters.getLoginUser
+        console.log(user)
+        this.socket.emit('connection', user)
 
     }
 
@@ -64,13 +119,12 @@ class Chat {
 
     }
     
-
     /**
      * New message to the server
      * @param text String
      */
 
-    emitNewMessage(text) {
+    emitNewMessage(text,socket) {
 
         let id = this.createID()
 
@@ -80,7 +134,7 @@ class Chat {
 
         let message = {
             id: id,
-            user: '',
+            socket: socket,
             text: text,
             date: `${hours}:${minutes}`,
             state: 'send'

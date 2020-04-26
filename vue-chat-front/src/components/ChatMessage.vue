@@ -2,7 +2,7 @@
 
     <div class="styx-chat__line styx-chat__line__other" >
 
-        <div class="styx-chat__line__user">{{user}}</div>
+        <div class="styx-chat__line__user">{{user.name}}</div>
 
         <p class="styx-chat__line__text" v-html="text"></p>
 
@@ -18,21 +18,32 @@
         
         props:[
             'id',
-            'user',
+            'socket',
             'date',
             'text',
             'state'
         ],
+    
+        data() {
+             
+            return {
+
+                user:''
+
+            }
+
+        },
 
         mounted() {
 
             this.$nextTick(() => {
 
+                this.user = this.$store.getters.getUserBySocket(this.socket)
                 this.$emit('scrollToBottom')
 
             })
 
-        }
+        },
 
     }
 

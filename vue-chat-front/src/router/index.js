@@ -18,7 +18,8 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "chat" */ '../views/Chat.vue')
+        component: () => import(/* webpackChunkName: "chat" */ '../views/Chat.vue'),
+        meta: { requiresAuth: true }
     }
 ]
 
@@ -26,6 +27,20 @@ const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
+})
+
+router.beforeEach((to,from,next) => {
+
+    const loggedIn = localStorage.getItem('user')
+
+    if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
+
+        next('/')
+       
+    }
+
+    next()
+
 })
 
 export default router

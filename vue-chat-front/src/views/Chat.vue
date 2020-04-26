@@ -6,15 +6,10 @@
 
         <section class="styx-chat__users">
 
-            <ul>
-
-                <li v-for="(user,index) in users" :key="index">
-
-                    <span>{{user.name}}</span>
-
-                </li>
-                
-            </ul>
+            <ChatUser v-for="(user,index) in users" :key="index"
+                :name="user.name"
+                :avatar="user.avatar"
+            />
 
         </section>
 
@@ -26,7 +21,7 @@
 
                     <ChatMessage v-for="(message,index) in messages" :key="index"
                         :id="message.index"
-                        :user="message.user"
+                        :socket="message.socket"
                         :date="message.date"
                         :text="message.text"
                         :state="message.state"
@@ -82,6 +77,7 @@
     import { mapGetters } from 'vuex'
     import Chat from '@/libraries/Chat'
     import ChatMessage from '@/components/ChatMessage'
+    import ChatUser from '@/components/ChatUser'
 
     export default {
 
@@ -99,7 +95,8 @@
 
         components: {
 
-            ChatMessage
+            ChatMessage,
+            ChatUser
 
         },
 
@@ -109,7 +106,9 @@
 
                 if(this.message !== '') {
 
-                    this.chat.emitNewMessage(this.message)
+                    let user_message = this.$store.getters.getUser(this.user)
+                    
+                    this.chat.emitNewMessage(this.message,user_message.socket)
 
                     this.message = ''
 
@@ -130,6 +129,7 @@
         computed: {
 
             ...mapGetters({
+                user: 'getLoginUser',
                 users: 'getUsers',
                 messages: 'getMessages'
             })

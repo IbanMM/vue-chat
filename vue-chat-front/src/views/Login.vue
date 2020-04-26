@@ -53,7 +53,11 @@
                     }
 
                     if(res.status == 200) {
+
+                        this.$store.commit('SET_LOGIN', true)
+                        this.$store.commit('SET_LOGIN_USER', res.data.user)
                         this.$router.push({name:'Chat'})
+
                     }
 
                 })

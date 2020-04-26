@@ -31,34 +31,36 @@ app.use(bodyparser.json())
 
 app.post('/user', (req, res) => {
 
-  let user = req.body.user
-  
-  let user_db = us.getUser(user.name)
+    let user = req.body.user
 
-  if(typeof user_db !== 'undefined') {
+    let user_db = us.getUser(user.name)
 
-    let user_res = {
+    if(typeof user_db !== 'undefined') {
 
-      name: user.name,
-      avatar: user_db.avatar
+        let user_res = {
+
+            name: user.name,
+            avatar: user_db.avatar
+
+        }
+
+        if(user_db.password === user.password) {
+
+            res.json({
+
+                user: user_res
+                
+            })
+
+        } else {
+
+            res.json({
+                data: 'Error'
+            })
+
+        }
 
     }
-
-    if(user_db.password === user.password) {
-
-      res.json({
-        user: user_res
-      })
-
-    } else {
-
-      res.json({
-        data: ''
-      })
-
-    }
-
-  }
 
 });
 
@@ -69,24 +71,29 @@ app.use(express.static(path.resolve(__dirname, '../vue-chat-front/dist/')))
 
 app.get('*', (req, res) => {
 
-  res.sendFile(path.resolve(__dirname, '../vue-chat-front/dist/', './index.html'))
+    res.sendFile(path.resolve(__dirname, '../vue-chat-front/dist/', './index.html'))
 
 });
 
 // -------------------------------------------------------------
-// Socket.IO - Set up
+// Socket.IO
 // -------------------------------------------------------------
 const server = http.createServer(app)
 const io = require('socket.io')(server)
 
 io.on('connection', (socket) => {
 
-  console.log(socket.id);
+    let handshakeData = socket.request;
+    let user_name = handshakeData._query['user']
+    let socket_id = socket.id
 
-    io.emit('user-setup', {
-        name: 'user',
-        message: 'ok',
-        date: ''
+    us.setUserOnline(user_name, socket_id)
+
+    /**
+     * Broadcast list of users online
+     */
+    io.emit('getUsersOnline', {
+        users: us.getUsersOnline()
     });
 
     /**
@@ -95,7 +102,7 @@ io.on('connection', (socket) => {
      */
     
     socket.on('sendNewMessage', (message) => {
-        console.log(socket.id);
+
         // Broadcast message to all users
         io.emit('getNewMessage', message)
 
@@ -103,37 +110,22 @@ io.on('connection', (socket) => {
 
     /**
      * Client disconnect
-     * @param message Object
      */
     socket.on('disconnect', () => {
 
-      console.log('down');
+        us.setUserOffline(socket_id)
+
+        io.emit('getUserOffline', {
+            socket: socket_id
+        })
 
     })
     
 })
 
-
-
-  /*
-  
-  io.on('connection', client => {
-  
-    const stream = ss.createStream();
-  
-    client.on('track', () => {
-      const filePath = path.resolve(__dirname, './music', './test.mp3');
-      const stat = fileSystem.statSync(filePath);
-      const readStream = fileSystem.createReadStream(filePath);
-      // pipe stream with response stream
-      readStream.pipe(stream);
-  
-      ss(client).emit('track-stream', stream, { stat });
-    });
-    client.on('disconnect', () => {});
-  });
-  */
-  
+// -------------------------------------------------------------
+// Server Up
+// -------------------------------------------------------------
 server.listen(process.env.PORT || '3006', function () {
 
     console.log('Server app listening on port 3006!')
