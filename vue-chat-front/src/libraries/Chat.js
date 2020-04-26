@@ -34,7 +34,6 @@ class Chat {
 
     /**
      * Open connection to the server
-     * @param user Object
      */
     connect(){
 
@@ -126,7 +125,7 @@ class Chat {
     emitNewConnection() {
 
         let user = this.vuex.getters.getLoginUser
-        console.log(user)
+
         this.socket.emit('connection', user)
 
     }
@@ -139,6 +138,7 @@ class Chat {
     getNewMessage(message) {
 
         this.audio.playNotification()
+        
         this.vuex.commit('SET_MESSAGE', message)
 
     }

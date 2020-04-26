@@ -84,13 +84,11 @@
 
                     if(error) {
                         
-                        console.log(error)
                         this.errors.push(error)
 
                     }
 
                     if(res.status == 200) {
-
 
                         if(res.data.code == 200) {
 
@@ -100,7 +98,6 @@
 
                         } else {
 
-                            console.log(res.data.error)
                             this.errors.push(res.data.error)
 
                         }
