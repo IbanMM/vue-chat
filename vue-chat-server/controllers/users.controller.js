@@ -40,6 +40,26 @@ class Users {
     }
 
     /**
+     * Check if the user is online
+     * @param name String
+     */
+
+    checkUserOnline(name) {
+
+        let user_object = this.users_online.find(user => user.name === name)
+        let user_index = this.users_online.indexOf(user_object)
+
+        if(typeof user_object !== 'undefined' && user_index != -1) {
+
+            return true
+
+        }
+
+        return false
+
+    }
+
+    /**
      * Add user to the users online
      * @param key String
      * @param socket String
@@ -61,6 +81,23 @@ class Users {
             user_online.avatar = user.avatar
 
             this.users_online.push(user_online)
+
+        }
+
+    }
+
+    /**
+     * Get user online
+     * @param socket String
+     */
+    getUserOnline(socket) {
+
+        let user_object = this.users_online.find(user => user.socket === socket)
+        let user_index = this.users_online.indexOf(user_object)
+
+        if(typeof user_object !== 'undefined' && user_index != -1) {
+
+            return user_object
 
         }
 

@@ -5,7 +5,7 @@
  *  (____  /__|_|  /   __(____  /__|   \____/ 
  *       \/      \/|__|       \/              
  * 
- * Simple server for demonstration pourposes only, this is not for a production enviroment.
+ * Simple server for demonstration pourposes only, this is NOT for a production enviroment.
  *
  */
 const http = require('http')
@@ -35,7 +35,9 @@ app.post('/user', (req, res) => {
 
     let user_db = us.getUser(user.name)
 
-    if(typeof user_db !== 'undefined') {
+    let user_online = us.checkUserOnline(user.name)
+
+    if(typeof user_db !== 'undefined' && !user_online) {
 
         let user_res = {
 
@@ -47,18 +49,25 @@ app.post('/user', (req, res) => {
         if(user_db.password === user.password) {
 
             res.json({
-
+                code: 200,
                 user: user_res
-                
             })
 
         } else {
 
             res.json({
-                data: 'Error'
+                code: 400,
+                error: 'Incorrect password'
             })
 
         }
+
+    } else {
+
+        res.json({
+            code: 400,
+            error: 'This user is currently online or not exits'
+        })
 
     }
 
@@ -90,12 +99,17 @@ io.on('connection', (socket) => {
     us.setUserOnline(user_name, socket_id)
 
     /**
-     * Broadcast list of users online
+     * Broadcast list of users online to client on connect
      */
-
-    io.emit('getUsersOnline', {
+    socket.emit('getUsersOnline', {
         users: us.getUsersOnline()
-    });
+    })
+
+    /**
+     * Send the new user to the rest on the clients
+     */
+    let new_user_online = us.getUserOnline(socket_id)
+    socket.broadcast.emit('getNewUserOnline', new_user_online)
 
     /**
      * New message from a user

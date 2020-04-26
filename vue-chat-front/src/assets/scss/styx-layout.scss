@@ -25,7 +25,8 @@
     max-width: 61.875rem;
     margin: 0 auto;
     grid-area: header;
-    //background-color: blue;
+    background-color: rgba(0,0,0,0.02);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
     height: 100px;
     display: flex;
     justify-content: flex-end;
@@ -49,8 +50,11 @@
 
 .styx-chat__footer {
 
+    max-width: 61.875rem;
+    margin: 0 auto;
     grid-area: footer;
-    background-color: #fff;
+    background-color: rgba(0,0,0,0.02);
+    border-top: 1px solid rgba(0,0,0,0.03);
     height: 75px;
 
 }

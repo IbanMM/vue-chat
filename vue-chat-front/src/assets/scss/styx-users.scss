@@ -8,18 +8,22 @@
 
 .styx-chat__users_title {
 
+    color: rgba(0,0,0,0.6);
     margin-top: 1rem;
     margin-bottom: 1rem;
+    background-color: #fff;
+    padding: 0.5rem;
+    box-shadow: 0 0 1px rgba(0,0,0,0.3);
+    border-radius: 14px;
+    padding-left: 1rem;
+    font-size: 0.9rem;
 
 }
 
 .styx-chat__user {
 
-    display: flex;
-    border-radius: 17px;
-    background: #fff;
-    box-shadow: 0 0 1px rgba(0,0,0,0.3);
-    align-items: center;
+    //display: flex;
+    position: relative;
 
 }
 
@@ -30,6 +34,7 @@
     border-radius: 50%;
     overflow: hidden;
     position: relative;
+    z-index: 9;
     left: -2px;
 
     img {
@@ -46,7 +51,24 @@
 
     text-transform: capitalize;
     padding-left: $golden-ratio * 0.5rem;
-
+    border-radius: 17px;
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,0.3);
+    align-items: center;
+    display: flex;
+    padding-left: 50px;
+    padding-right: 20px;
+    padding: 0.5rem 20px 0.5rem 40px;
+    margin-left: -30px;
+    font-size: 0.8rem;
+    display: inline-block;
+    width: auto;
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translate(0,-50%);
+    z-index: 8;
+    color: rgba(0,0,0,0.6);
 }
 
 
