@@ -76,8 +76,8 @@
             sendUser() {
 
                 this.errors = []
-
-                axios.post(`${process.env.VUE_APP_API_URL}user`,{
+                
+                axios.post(`http://${process.env.VUE_APP_API_DOMAIN}:${process.env.VUE_APP_API_PORT}/user`,{
                     user: this.user
                 })
                 .then((res, error) => {

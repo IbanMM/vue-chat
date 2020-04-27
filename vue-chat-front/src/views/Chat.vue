@@ -69,7 +69,7 @@
 
             return {
 
-                chat: new Chat('localhost','3006'),
+                chat: new Chat(process.env.VUE_APP_API_DOMAIN,process.env.VUE_APP_API_PORT),
                 message: '',
                 messages_render: null
 
