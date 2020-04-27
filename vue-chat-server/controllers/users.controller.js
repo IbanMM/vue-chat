@@ -6,7 +6,7 @@
  *       \/      \/|__|       \/              
  * 
  * Simple class to handle users.
- * Demonstration pourposes only, this is not for a production enviroment.
+ * Learning pourposes only, this is not for a production enviroment.
  *
  */
 const fs = require('fs');
@@ -121,6 +121,7 @@ class Users {
 
         console.log('users online')
         console.log(this.users_online)
+
     }
 
     /**

@@ -5,7 +5,7 @@
  *  (____  /__|_|  /   __(____  /__|   \____/ 
  *       \/      \/|__|       \/              
  * 
- * Simple server for demonstration pourposes only, this is NOT for a production enviroment.
+ * Simple server for learning pourposes only, this is NOT for a production enviroment.
  *
  */
 const http = require('http')
@@ -99,10 +99,12 @@ io.on('connection', (socket) => {
     us.setUserOnline(user_name, socket_id)
 
     /**
-     * Broadcast list of users online to client on connect
+     * Broadcast list of users online to client who just connect
      */
     socket.emit('getUsersOnline', {
+
         users: us.getUsersOnline()
+
     })
 
     /**
