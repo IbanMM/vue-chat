@@ -39,8 +39,20 @@ class Chat {
 
         let user = this.vuex.getters.getLoginUser
         let user_name = user.name
+
+        this.socket_url = ''
+
+        if(process.env.NODE_ENV == "development") {
+
+            this.socket_url += `${process.env.VUE_APP_API_DOMAIN}:${process.env.VUE_APP_API_PORT}`
+
+        } else {
+
+            this.socket_url += `${process.env.VUE_APP_API_DOMAIN}`
+
+        }
         
-        this.socket = io.connect( `http://${this.url}:${this.port}`, { query: `user=${user_name}` } )
+        this.socket = io.connect( `http://${this.socket_url}`, { query: `user=${user_name}` } )
 
         this.socket.on('getUsersOnline', (data) => {
 

@@ -60,7 +60,8 @@
                     password: ''
                 },
                 loading: false,
-                errors: []
+                errors: [],
+                api_url: 'http://'
             }
 
         },
@@ -71,13 +72,27 @@
 
         },
 
+        created() {
+
+            if(process.env.NODE_ENV == "development") {
+
+                this.api_url += `${process.env.VUE_APP_API_DOMAIN}:${process.env.VUE_APP_API_PORT}`
+
+            } else {
+
+                this.api_url += `${process.env.VUE_APP_API_DOMAIN}`
+
+            }
+
+        },
+
         methods: {
 
             sendUser() {
 
                 this.errors = []
-                
-                axios.post(`http://${process.env.VUE_APP_API_DOMAIN}:${process.env.VUE_APP_API_PORT}/user`,{
+            
+                axios.post(`${this.api_url}/user`,{
                     user: this.user
                 })
                 .then((res, error) => {
