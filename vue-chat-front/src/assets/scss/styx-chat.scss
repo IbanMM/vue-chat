@@ -6,7 +6,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    height: calc(100vh - 75px);
+
+    min-height: calc(100vh - 120px);
+
     @media all and (min-width: 992px) {
         height: calc(100vh - 150px);
     }

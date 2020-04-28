@@ -7,6 +7,7 @@
     flex-direction: column;
 
     @media all and (min-width: 992px) {
+
         display: grid;
         height: calc(100vh - 150px);
         grid-template-columns: 150px 150px 1fr 1fr 1fr 1fr;
@@ -69,7 +70,13 @@
 
     max-width: 61.875rem;
     margin: 0 auto;
-    min-height: calc(100vh - 75px);
+    min-height: calc(100vh - 120px);
+
+    @media all and (min-width: 992px) {
+
+        min-height: calc(100vh- 75px);
+
+    }
 
 }
 
