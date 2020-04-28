@@ -2,7 +2,12 @@
 
     <div class="styx-chat__header">
 
-        <AmparoLogo/>
+        <div class="styx-chat__header__logo">
+
+            <Logo/>
+
+        </div>
+
         <ChatLogged v-if="login" />
 
     </div>
@@ -12,13 +17,13 @@
 <script>
 
     import ChatLogged from '@/components/ChatLogged'
-    import AmparoLogo from '@/assets/svg/amparo.svg'
+    import Logo from '@/assets/svg/logo.svg'
     import { mapGetters } from 'vuex'
 
     export default {
 
         components: {
-            AmparoLogo,
+            Logo,
             ChatLogged
         },
         

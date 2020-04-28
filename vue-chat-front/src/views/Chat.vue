@@ -2,17 +2,6 @@
 
     <div class="styx-chat__layout">
 
-        <section class="styx-chat__users">
-
-            <h4 class="styx-chat__users_title">Users online: {{users.length}}</h4>
-
-            <ChatUser v-for="(user,index) in users" :key="index"
-                :name="user.name"
-                :avatar="user.avatar"
-            />
-
-        </section>
-
         <section class="styx-chat">
 
             <section ref="timelinescroll" class="styx-chat__timeline__wrapper">
@@ -58,6 +47,17 @@
                 </form>
 
             </section>
+
+        </section>
+
+        <section class="styx-chat__users">
+
+            <h4 class="styx-chat__users_title">Users online: {{users.length}}</h4>
+
+            <ChatUser v-for="(user,index) in users" :key="index"
+                :name="user.name"
+                :avatar="user.avatar"
+            />
 
         </section>
 

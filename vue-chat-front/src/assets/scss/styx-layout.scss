@@ -3,16 +3,13 @@
     max-width: 61.875rem;
     width: 100%;
     margin: 0 auto;
-    height: calc(100vh - 150px);
-    display: grid;
-    grid-template-columns: 150px 150px 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: 
-        "chat chat chat chat chat chat"
-        "users users users users users users";
+    display: flex;
+    flex-direction: column;
 
     @media all and (min-width: 992px) {
-
+        display: grid;
+        height: calc(100vh - 150px);
+        grid-template-columns: 150px 150px 1fr 1fr 1fr 1fr;
         grid-template-areas: 
         "users users chat chat chat chat";
 
@@ -29,20 +26,29 @@
     border-bottom: 1px solid rgba(0,0,0,0.03);
     height: 75px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    padding: 0 1rem;
     align-items: center;
     position: relative;
     z-index: $z-index-header;
 
-    svg {
+    .styx-chat__header__logo {
 
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%,0);
-        margin-top: 0.5rem;
-        height: 190px;
         width: auto;
+        max-width: 100px;
+
+        svg {
+
+            width: 100%;
+            max-width: 100%;
+
+        }
+
+        @media all and (min-width: 992px) {
+
+            max-width: 100px;
+
+        }
 
     }
 
@@ -63,7 +69,7 @@
 
     max-width: 61.875rem;
     margin: 0 auto;
-    min-height: calc(100vh - 150px);
+    min-height: calc(100vh - 75px);
 
 }
 
