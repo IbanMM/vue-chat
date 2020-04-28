@@ -35,9 +35,19 @@
 
             <section class="styx-chat__form">
 
+                <div class="styx-chat__whoistyping">
+
+                    <ChatWhoUser v-for="(user,index) in whoistyping" :key="index"
+                        :id="user.id"
+                        :name="user.name"
+                        :avatar="user.avatar"
+                    />
+
+                </div>
+
                 <form class="styx-chat__form__inputgroup" @submit.prevent="newMessage">
 
-                    <input type="text" v-model="message" class="styx-chat__form__input">
+                    <input type="text" v-model="message" class="styx-chat__form__input" @>
 
                     <button type="submit" class="styx-chat__form__submit">
 
@@ -61,6 +71,7 @@
     import Chat from '@/libraries/Chat'
     import ChatMessage from '@/components/ChatMessage'
     import ChatUser from '@/components/ChatUser'
+    import ChatWhoUser from '@/components/ChatWhoUser'
     import PaperPlane from '@/assets/svg/send-message.svg'
 
     export default {
@@ -71,7 +82,8 @@
 
                 chat: new Chat(process.env.VUE_APP_API_DOMAIN,process.env.VUE_APP_API_PORT),
                 message: '',
-                messages_render: null
+                messages_render: null,
+                istyping: false
 
             }
 
@@ -81,6 +93,7 @@
 
             ChatMessage,
             ChatUser,
+            ChatWhoUser,
             PaperPlane
 
         },
@@ -94,6 +107,8 @@
                     this.chat.emitNewMessage(this.message,this.user.socket)
 
                     this.message = ''
+
+                    this.istyping = false
 
                 }
 
@@ -114,8 +129,29 @@
             ...mapGetters({
                 user: 'getLoginUser',
                 users: 'getUsers',
-                messages: 'getMessages'
+                messages: 'getMessages',
+                whoistyping: 'getWhoIsTyping'
             })
+
+        },
+
+        watch: {
+
+            message: function(val) {
+
+                if(val.length > 3 && !this.istyping) {
+
+                    this.istyping = true
+
+                    this.chat.emitWhoIsTyping()
+
+                } else if( val.length == 0) {
+
+                    this.istyping = false
+
+                }
+
+            }
 
         },
 

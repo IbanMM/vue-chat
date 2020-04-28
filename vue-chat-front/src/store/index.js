@@ -215,8 +215,8 @@ const moduleMessages = {
     },
   
   
-      mutations: {
-  
+    mutations: {
+
         /** 
          * Add a message to the state
          * 
@@ -224,16 +224,16 @@ const moduleMessages = {
          * @param message
          * 
          */
-  
+
         SET_MESSAGE( state, messages) {
 
             state.messages.push(messages)
 
         }
+
+    },
   
-      },
-  
-      getters: {
+    getters: {
   
         /** 
          * Return the current messages
@@ -253,6 +253,71 @@ const moduleMessages = {
 }
 
 // ----------------------------------------------------------
+// Vuex module for Who is typing
+// ----------------------------------------------------------
+const moduleTyping = {
+
+    state: {
+        
+        who: []
+
+    },
+
+    mutations: {
+  
+        /** 
+         * Add a user to the state
+         * 
+         * @param state
+         * @param user
+         * 
+         */
+
+        SET_WHO_USER( state, user ) {
+
+            state.who.push(user)
+
+        },
+
+        /** 
+         *  Remove a user from the state
+         * 
+         * @param state
+         * @param socket
+         * 
+         */
+
+        REMOVE_WHO_USER( state, socket ) {
+
+            let user_object = state.who.find(user => user.socket === socket)
+            let user_index = state.who.indexOf(user_object)
+
+            state.who.splice(user_index, 1)
+
+        },
+  
+    },
+
+    getters: {
+  
+        /** 
+         * Return who is typing
+         * 
+         * @param state
+         * 
+         */
+  
+        getWhoIsTyping: state => {
+
+            return state.who
+
+        }
+  
+    }
+
+}
+
+// ----------------------------------------------------------
 // Vuex modules
 // ----------------------------------------------------------
 const store =  new Vuex.Store({
@@ -261,7 +326,8 @@ const store =  new Vuex.Store({
 
         login: moduleLogin,
         users: moduleUsers,
-        messages: moduleMessages
+        messages: moduleMessages,
+        typing: moduleTyping
 
     }
 

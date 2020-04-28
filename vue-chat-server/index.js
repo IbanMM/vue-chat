@@ -126,6 +126,18 @@ io.on('connection', (socket) => {
     })
 
     /**
+     * New who is typing
+     * @param message Object
+     */
+
+    socket.on('typing', (message) => {
+
+        // To all users except sender
+        socket.broadcast.emit('getWhoIsTyping', socket_id)
+
+    })
+
+    /**
      * Client disconnect
      */
     socket.on('disconnect', () => {

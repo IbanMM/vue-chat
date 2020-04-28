@@ -84,12 +84,20 @@ class Chat {
             this.getNewMessage(message);
             
         })
+
+        this.socket.on('getWhoIsTyping', (socket) => {
+
+            this.getWhoIsTyping(socket);
+            
+        })
         
     }
 
     /**
      * Create list of users
+     * 
      * @param users Array
+     * 
      */
     setListOfUsers(users) {
 
@@ -109,7 +117,9 @@ class Chat {
 
     /**
      * Add new user online
+     * 
      * @param user Object
+     * 
      */
 
     setNewUserOnline(user) {
@@ -120,7 +130,9 @@ class Chat {
 
     /**
      * Remove user online
+     * 
      * @param socket String
+     * 
      */
 
     setUserOffline(socket) {
@@ -131,7 +143,9 @@ class Chat {
 
     /**
      * When a new connection is created
+     * 
      * @param user Object
+     * 
      */
 
     emitNewConnection() {
@@ -143,8 +157,44 @@ class Chat {
     }
 
     /**
+     * When a user is typing
+     */
+
+    emitWhoIsTyping() {
+
+        let user = this.vuex.getters.getLoginUser
+
+        this.socket.emit('typing', user.id)
+
+    }
+
+    /**
+     * When a user is typing
+     * 
+     * @param socket String
+     * 
+     */
+
+    getWhoIsTyping(socket) {
+
+        let user = this.vuex.getters.getUserBySocket(socket)
+
+        let user_who = {
+            id: this.createID(),
+            name: user.name,
+            avatar: user.avatar,
+            socket: socket
+        }
+
+        this.vuex.commit('SET_WHO_USER', user_who)
+
+    }
+
+    /**
      * New message from server
+     * 
      * @param message Object
+     * 
      */
 
     getNewMessage(message) {
@@ -157,7 +207,9 @@ class Chat {
     
     /**
      * New message to the server
+     * 
      * @param text String
+     * 
      */
 
     emitNewMessage(text,socket) {
@@ -187,7 +239,9 @@ class Chat {
 
     /**
      * Return a timestamp to use as id
+     * 
      * @param message Object
+     * 
      */
 
     createID() {
@@ -200,8 +254,11 @@ class Chat {
 
     /**
      * Add 0 to 1 digit values
+     * 
      * @param value Number
+     * 
      */
+
     add0(value) {
 
         if(value < 10) {

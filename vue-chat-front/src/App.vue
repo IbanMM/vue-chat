@@ -33,4 +33,5 @@
     @import '@/assets/scss/styx-chat.scss';
     @import '@/assets/scss/styx-users.scss';
     @import '@/assets/scss/styx-login.scss';
+    @import '@/assets/scss/styx-who.scss';
 </style>
