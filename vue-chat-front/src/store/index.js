@@ -119,10 +119,16 @@ const moduleUsers = {
         SET_USER( state, user ) {
 
             let online = state.users.find(u => u.socket === user.socket)
+            let name = state.users.find(u => u.name === user.name)
 
-            if(typeof online === 'undefined') {
+            if(typeof online === 'undefined' && typeof name === 'undefined' ) {
 
                 state.users.push(user)
+
+            } else if(typeof name !== 'undefined') {
+
+                let user_index = state.users.indexOf(name)
+                state.users[user_index].socket = user.socket
 
             }
 

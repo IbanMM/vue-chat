@@ -72,10 +72,11 @@
 
     max-width: 61.875rem;
     margin: 0 auto;
-    min-height: calc(100% - 120px);
+    height: calc(100vh - 120px);
 
     @media all and (min-width: 992px) {
 
+        height: auto;
         min-height: calc(100vh- 75px);
 
     }
