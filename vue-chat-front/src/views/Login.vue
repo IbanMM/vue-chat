@@ -1,6 +1,6 @@
 <template>
 
-    <div class="styx-chat__container styx-chat__login__container">
+    <div ref="shch" class="styx-chat__container styx-chat__login__container">
 
         <form class="styx-chat__login" action="" @submit.prevent="sendUser">
 
@@ -46,6 +46,7 @@
 
 <script>
 
+    import { isMobile } from 'mobile-device-detect'
     import axios from 'axios'
     import Loading from '@/components/Loading'
 
@@ -61,7 +62,8 @@
                 },
                 loading: false,
                 errors: [],
-                api_url: 'http://'
+                api_url: 'http://',
+                mobile: isMobile
             }
 
         },
@@ -81,6 +83,20 @@
                 this.api_url += `:${process.env.VUE_APP_API_PORT}`
 
             }
+
+        },
+
+        mounted() {
+
+            this.$nextTick(() => {
+
+                if(this.mobile) {
+
+                    this.$refs.shch.style.height = window.innerHeight - 150 + 'px'
+
+                }
+
+            })
 
         },
 

@@ -125,7 +125,7 @@ const moduleUsers = {
 
                 state.users.push(user)
 
-            } else if(typeof name !== 'undefined') {
+            } else if (typeof name !== 'undefined') {
 
                 let user_index = state.users.indexOf(name)
                 state.users[user_index].socket = user.socket

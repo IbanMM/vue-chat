@@ -2,7 +2,7 @@
 
     <div class="styx-chat__layout">
 
-        <section class="styx-chat">
+        <section ref="shch" class="styx-chat">
 
             <section ref="timelinescroll" class="styx-chat__timeline__wrapper">
 
@@ -73,6 +73,7 @@
     import ChatUser from '@/components/ChatUser'
     import ChatWhoUser from '@/components/ChatWhoUser'
     import PaperPlane from '@/assets/svg/send-message.svg'
+    import { isMobile } from 'mobile-device-detect'
 
     export default {
 
@@ -83,7 +84,9 @@
                 chat: new Chat(),
                 message: '',
                 messages_render: null,
-                istyping: false
+                istyping: false,
+                mobile: isMobile,
+                originalSize: window.innerHeight + window.innerWidth
 
             }
 
@@ -152,6 +155,31 @@
                 }
 
             }
+
+        },
+
+        mounted() {
+
+            this.$nextTick(() => {
+
+                if(this.mobile) {
+
+                    this.$refs.shch.style.height = window.innerHeight - 75 + 'px'
+
+                    //Work around for the virtual keyboard
+                    window.addEventListener('resize',() => {
+
+                        if(window.innerHeight + window.innerWidth != this.originalSize) {
+
+                            this.$refs.shch.style.height = window.innerHeight - 75 + 'px'
+
+                        }
+
+                    })
+
+                }
+
+            })
 
         },
 
