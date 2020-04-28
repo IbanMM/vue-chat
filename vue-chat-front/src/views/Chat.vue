@@ -168,12 +168,13 @@
 
                     //Work around for the virtual keyboard
                     window.addEventListener('resize',() => {
+                        
+                        window.scrollTo(0, 0)
 
                         if(window.innerHeight + window.innerWidth != this.originalSize) {
 
                             this.$refs.shch.style.height = window.innerHeight - 75 + 'px'
-                            window.scrollTo(0, 0)
-
+                            
                         }
 
                     })
