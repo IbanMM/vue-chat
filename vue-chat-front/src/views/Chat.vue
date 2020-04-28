@@ -172,6 +172,7 @@
                         if(window.innerHeight + window.innerWidth != this.originalSize) {
 
                             this.$refs.shch.style.height = window.innerHeight - 75 + 'px'
+                            window.scrollTo(0, 0)
 
                         }
 
