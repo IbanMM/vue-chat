@@ -74,13 +74,11 @@
 
         created() {
 
-            if(process.env.NODE_ENV == "development") {
+            this.api_url += `${process.env.VUE_APP_API_DOMAIN}`
 
-                this.api_url += `${process.env.VUE_APP_API_DOMAIN}:${process.env.VUE_APP_API_PORT}`
+            if(process.env.VUE_APP_API_DOMAIN != '') {
 
-            } else {
-
-                this.api_url += `${process.env.VUE_APP_API_DOMAIN}`
+                this.api_url += `:${process.env.VUE_APP_API_PORT}`
 
             }
 

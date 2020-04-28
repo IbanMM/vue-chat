@@ -80,7 +80,7 @@
 
             return {
 
-                chat: new Chat(process.env.VUE_APP_API_DOMAIN,process.env.VUE_APP_API_PORT),
+                chat: new Chat(),
                 message: '',
                 messages_render: null,
                 istyping: false

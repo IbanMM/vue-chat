@@ -90,6 +90,7 @@ class Users {
      * Get user online
      * @param socket String
      */
+    
     getUserOnline(socket) {
 
         let user_object = this.users_online.find(user => user.socket === socket)

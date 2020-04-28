@@ -3,7 +3,7 @@
     max-width: 61.875rem;
     width: 100%;
     margin: 0 auto;
-    height: calc(100vh - 175px);
+    height: calc(100vh - 150px);
     display: grid;
     grid-template-columns: 150px 150px 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -27,7 +27,7 @@
     grid-area: header;
     background-color: rgba(0,0,0,0.02);
     border-bottom: 1px solid rgba(0,0,0,0.03);
-    height: 100px;
+    height: 75px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -63,7 +63,7 @@
 
     max-width: 61.875rem;
     margin: 0 auto;
-    min-height: calc(100vh - 175px);
+    min-height: calc(100vh - 150px);
 
 }
 
@@ -74,5 +74,16 @@
     border: 0;
     font-family: $font-family;
     width: 100%;
+
+}
+
+.styx-chat__footer {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: rgba(0,0,0,0.4);
 
 }

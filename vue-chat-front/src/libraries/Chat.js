@@ -16,15 +16,11 @@ import store from '@/store'
 
 class Chat {
 
-    constructor(url, port) {
+    constructor() {
 
         this.audio = new Sound
 
         this.vuex = store
-
-        this.url = url
-
-        this.port = port
 
         this.socket
 
@@ -40,19 +36,17 @@ class Chat {
         let user = this.vuex.getters.getLoginUser
         let user_name = user.name
 
-        this.socket_url = ''
+        this.socket_url = 'http://'
 
-        if(process.env.NODE_ENV == "development") {
+        this.socket_url += `${process.env.VUE_APP_API_DOMAIN}`
 
-            this.socket_url += `${process.env.VUE_APP_API_DOMAIN}:${process.env.VUE_APP_API_PORT}`
+        if(process.env.VUE_APP_API_DOMAIN != '') {
 
-        } else {
-
-            this.socket_url += `${process.env.VUE_APP_API_DOMAIN}`
+            this.socket_url += `:${process.env.VUE_APP_API_PORT}`
 
         }
         
-        this.socket = io.connect( `http://${this.socket_url}`, { query: `user=${user_name}` } )
+        this.socket = io.connect( this.socket_url, { query: `user=${user_name}` } )
 
         this.socket.on('getUsersOnline', (data) => {
 

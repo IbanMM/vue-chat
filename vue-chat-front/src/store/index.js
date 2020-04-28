@@ -275,7 +275,7 @@ const moduleTyping = {
 
         SET_WHO_USER( state, user ) {
 
-            state.who.push(user)
+            state.who.unshift(user)
 
         },
 

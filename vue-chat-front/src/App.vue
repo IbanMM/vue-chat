@@ -6,7 +6,11 @@
 
         <router-view/>
 
-        <div class="styx-chat__footer"></div>
+        <div class="styx-chat__footer">
+
+            <p>Anno Domini 2020</p>
+
+        </div>
         
     </div>
 
