@@ -1,6 +1,6 @@
 # Chat en tiempo real con Vue.js y Node.js ala WhatsApp
 
-(http://akelarre.veiss.desarrollo.veiss.com/)[http://akelarre.veiss.desarrollo.veiss.com/]
+[http://akelarre.veiss.desarrollo.veiss.com/](http://akelarre.veiss.desarrollo.veiss.com/)
 
 Que es esto y que no es.
 
