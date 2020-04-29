@@ -101,6 +101,7 @@ io.on('connection', (socket) => {
     /**
      * Broadcast list of users online to client who just connect
      */
+
     socket.emit('getUsersOnline', {
 
         users: us.getUsersOnline()
@@ -110,6 +111,7 @@ io.on('connection', (socket) => {
     /**
      * Send the new user to the rest on the clients
      */
+
     let new_user_online = us.getUserOnline(socket_id)
     socket.broadcast.emit('getNewUserOnline', new_user_online)
 
@@ -140,6 +142,7 @@ io.on('connection', (socket) => {
     /**
      * Client disconnect
      */
+    
     socket.on('disconnect', () => {
 
         us.setUserOffline(socket_id)

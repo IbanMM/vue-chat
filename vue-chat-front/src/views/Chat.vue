@@ -172,8 +172,6 @@
 
                     // Work around for the virtual keyboard
                     window.addEventListener('resize',() => {
-
-                        console.log(body.scrollTop + '--' + html.scrollTop)
                         
                         window.scroll(0,0)
                         body.scroll(0,0)
