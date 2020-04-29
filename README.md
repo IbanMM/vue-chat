@@ -45,9 +45,9 @@ Cosas que he usado:
 
 Esto no tiene persistencia de datos, no hay detrás una base de datos que guarda, solo se encarga de recibir los datos y transmitirlos.
 
-La gestión de usuarios la hecho yo con una controlador esta aquí:
+La gestión de usuarios la hecho yo con una controlador esta aquí: (User controller)[http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/controllers/users.controller.js]
 
-Los datos de los usuarios estan en un JSON y están aquí:
+Los datos de los usuarios estan en un JSON y están aquí: (Usuarios)[http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/data/users.json]
 
 
 Que hace esto:
