@@ -16,3 +16,15 @@ button, button:visited, button:focus, button:active, button:hover,
 a, a:visited, a:focus, a:active, a:hover{
     outline:0 none !important;
 }
+
+#app {
+
+    overflow: hidden;
+
+    @media all and (min-width: 992px) {
+
+        overflow: visible;
+
+    }
+
+}

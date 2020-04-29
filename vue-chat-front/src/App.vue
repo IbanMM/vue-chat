@@ -1,6 +1,6 @@
 <template>
 
-    <div id="app" >
+    <div ref="app" id="app" >
 
         <ChatHeader />
 

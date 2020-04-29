@@ -166,16 +166,21 @@
 
                     this.$refs.shch.style.height = window.innerHeight - 75 + 'px'
 
-                    //Work around for the virtual keyboard
+                    let body = document.getElementsByTagName('body')[0]
+                    let html = document.getElementsByTagName('body')[0]
+                    let app = document.getElementById('app')
+
+                    // Work around for the virtual keyboard
                     window.addEventListener('resize',() => {
+
+                        console.log(body.scrollTop + '--' + html.scrollTop)
                         
-                        window.scrollTo(0, 0)
+                        window.scroll(0,0)
+                        body.scroll(0,0)
+                        html.scroll(0,0)
 
-                        if(window.innerHeight + window.innerWidth != this.originalSize) {
-
-                            this.$refs.shch.style.height = window.innerHeight - 75 + 'px'
-                            
-                        }
+                        app.style.height = window.innerHeight + 'px'
+                        this.$refs.shch.style.height = window.innerHeight - 75 + 'px'
 
                     })
 
