@@ -4,7 +4,7 @@
 
 Que es esto y que no es.
 
-Es un sala de chat ala **WhatsApp** hecha por mi desde 0 (si, he picado cada línea de código yo).
+Es un sala de chat ala **WhatsApp** hecha por mi desde 0 (sí, he picado cada línea de código yo).
 
 Y sí esto es TODO **javascript** el back y el front \m/
 
@@ -26,7 +26,7 @@ npm run serve
 
 ~~~
 
-Para producción, suponiendo que ya hemos instalado previamente:
+Para compilarlo para producción, suponiendo que ya hemos instalado previamente:
 
 ~~~ bash
 
@@ -47,14 +47,14 @@ Cosas que he usado:
 
 Esto no tiene persistencia de datos, no hay detrás una base de datos que guarda, solo se encarga de recibir los datos y transmitirlos.
 
-La gestión de usuarios la hecho yo con una controlador esta aquí: [User controller](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/controllers/users.controller.js)
+La gestión de usuarios la hecho yo con un controlador esta aquí: [User controller](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/controllers/users.controller.js)
 
 Los datos de los usuarios estan en un JSON y están aquí: [Usuarios](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/data/users.json)
 
 
 Que hace esto:
 
-* Levanta un servidor http que gestión las llamadas a la API para el login.
+* Levanta un servidor http que gestióna las llamadas a la API para el login.
 * El servidor http todas las peticiones que no sean a la API las redirige a 'vue-chat-front/dist', es decir al front.
 * Levanta un servidor de WebSockets.
 
@@ -76,6 +76,6 @@ node index.js
 
 ~~~
 
-Para levantarlo producción usar [pm2](https://pm2.keymetrics.io/) por supuesto.
+Para levantarlo en producción usar [pm2](https://pm2.keymetrics.io/) por supuesto.
 
-Dudas consultas insultos [iban@veiss.com](mailto:iban@veiss.com)
+Dudas, consultas, insultos, ... [iban@veiss.com](mailto:iban@veiss.com)
