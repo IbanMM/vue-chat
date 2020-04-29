@@ -37,17 +37,17 @@ Los puertos y dominios son configurables via **.env.development** y **.env.produ
 
 Cosas que he usado:
 
-* Para generar las notificaciones de audio on the fly (tonejs.github.io)[https://tonejs.github.io/]
-* Vuex a destajo con módulos incluidos (vuex)[https://vuex.vuejs.org/guide/modules.html]
-* Cliente de websocket (socket.io - client)[https://socket.io/]
+* Para generar las notificaciones de audio on the fly [tonejs.github.io](https://tonejs.github.io/)
+* Vuex a destajo con módulos incluidos [vuex](https://vuex.vuejs.org/guide/modules.html)
+* Cliente de websocket [socket.io - client](https://socket.io/)
 
 ## Backend: Node.js
 
 Esto no tiene persistencia de datos, no hay detrás una base de datos que guarda, solo se encarga de recibir los datos y transmitirlos.
 
-La gestión de usuarios la hecho yo con una controlador esta aquí: (User controller)[http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/controllers/users.controller.js]
+La gestión de usuarios la hecho yo con una controlador esta aquí: [User controller](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/controllers/users.controller.js)
 
-Los datos de los usuarios estan en un JSON y están aquí: (Usuarios)[http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/data/users.json]
+Los datos de los usuarios estan en un JSON y están aquí: [Usuarios](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/data/users.json)
 
 
 Que hace esto:
@@ -59,9 +59,9 @@ Que hace esto:
 
 Con que lo hace:
 
-* Servidor http con (Express.js)[https://expressjs.com/]
-* Servidor websockets (socket.io - server)[https://socket.io/]
-* Para las CORS (cors)[https://github.com/expressjs/cors]
+* Servidor http con [Express.js](https://expressjs.com/)
+* Servidor websockets [socket.io - server](https://socket.io/)
+* Para las CORS [cors](https://github.com/expressjs/cors)
 
 
 Esta en el directorio **vue-chat-serve** para levantarlo, por defecto le he puesto el puerto 3006 pero se puede cambiar:
@@ -74,6 +74,6 @@ node index.js
 
 ~~~
 
-Para levantarlo producción usar (pm2)[https://pm2.keymetrics.io/] por supuesto.
+Para levantarlo producción usar [pm2](https://pm2.keymetrics.io/) por supuesto.
 
-Dudas consultas insultos (iban@veiss.com)[mailto:iban@veiss.com]
+Dudas consultas insultos [iban@veiss.com](mailto:iban@veiss.com)
