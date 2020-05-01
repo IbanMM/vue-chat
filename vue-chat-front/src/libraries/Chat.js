@@ -93,6 +93,7 @@ class Chat {
      * @param users Array
      * 
      */
+    
     setListOfUsers(users) {
 
         let user_logged = this.vuex.getters.getLoginUser

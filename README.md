@@ -1,22 +1,19 @@
-# Chat en tiempo real con Vue.js y Node.js ala WhatsApp
+# Realtime chat real with Vue and Node ala WhatsApp
 
-[http://akelarre.veiss.desarrollo.veiss.com/](http://akelarre.veiss.desarrollo.veiss.com/)
 
-Que es esto y que no es.
+Working example: [http://akelarre.veiss.desarrollo.veiss.com/](http://akelarre.veiss.desarrollo.veiss.com/)
 
-Es un sala de chat ala **WhatsApp** hecha por mi desde 0 (sí, he picado cada línea de código yo).
+What is this and what not.
 
-Y sí esto es TODO **javascript** el back y el front \m/
+Its a chat room ala **WhatsApp** (simplified very much). I build it for fun and learning purposes.
 
-He intentado comentar el código extensivamente.
+This has no data persistence, no database, the server only gets the messages and broacast them to the clients, the users data is a JSON and the management of who is online is an array.
 
-No tiene persistencia de datos, es decir no tiene una base datos detras, el servidor lo único que hace es recibir los mensajes y transmitirlos, los datos de los usuarios están en un JSON y la gestión de quien está online y no es on the fly.
+It has two parts :
 
-Consta de dos partes:
+## Frontend: Vue.js (the client side)
 
-## Frontend: Vue.js
-
-Esta en el directorio **vue-chat-front** para desarrollo :
+Its in the folder **vue-chat-front** for development :
 
 ~~~ bash
 
@@ -26,7 +23,7 @@ npm run serve
 
 ~~~
 
-Para compilarlo para producción, suponiendo que ya hemos instalado previamente:
+For production:
 
 ~~~ bash
 
@@ -35,38 +32,38 @@ npm run build
 
 ~~~
 
-Los puertos y dominios son configurables via **.env.development** y **.env.production**.
+The ports and domains are configurable via **.env.development** y **.env.production**.
 
-Cosas que he usado:
+Use this software besides from Vue itself:
 
-* Para generar las notificaciones de audio on the fly [tonejs.github.io](https://tonejs.github.io/)
-* Vuex a destajo con módulos incluidos [vuex](https://vuex.vuejs.org/guide/modules.html)
-* Cliente de websocket [socket.io - client](https://socket.io/)
+* For generate the audio notifications [tonejs.github.io](https://tonejs.github.io/)
+* Vuex [vuex](https://vuex.vuejs.org/guide/modules.html)
+* Websocket client [socket.io - client](https://socket.io/)
 
 ## Backend: Node.js
 
-Esto no tiene persistencia de datos, no hay detrás una base de datos que guarda, solo se encarga de recibir los datos y transmitirlos.
+No data persistence, no database, the server only gets the messages and broacast them to the clients.
 
-La gestión de usuarios la hecho yo con un controlador esta aquí: [User controller](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/controllers/users.controller.js)
+User management is a simple class: [User controller](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/controllers/users.controller.js)
 
-Los datos de los usuarios estan en un JSON y están aquí: [Usuarios](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/data/users.json)
-
-
-Que hace esto:
-
-* Levanta un servidor http que gestióna las llamadas a la API para el login.
-* El servidor http todas las peticiones que no sean a la API las redirige a 'vue-chat-front/dist', es decir al front.
-* Levanta un servidor de WebSockets.
+User data (is JSON file): [Usuarios](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/data/users.json)
 
 
-Con que lo hace:
+What id does?:
 
-* Servidor http con [Express.js](https://expressjs.com/)
-* Servidor websockets [socket.io - server](https://socket.io/)
-* Para las CORS [cors](https://github.com/expressjs/cors)
+* Creates a http server with a simple API end point for the login.
+* All the rest of get request are redirected to 'vue-chat-front/dist', the front side.
+* Creates a Socket.io server.
 
 
-Esta en el directorio **vue-chat-serve** para levantarlo, por defecto le he puesto el puerto 3006 pero se puede cambiar:
+With what?:
+
+* Http server [Express.js](https://expressjs.com/)
+* Websockets server [socket.io - server](https://socket.io/)
+* CORS [cors](https://github.com/expressjs/cors)
+
+
+Is in the folder **vue-chat-serve** to get it up & running:
 
 ~~~ bash
 
@@ -76,6 +73,4 @@ node index.js
 
 ~~~
 
-Para levantarlo en producción usar [pm2](https://pm2.keymetrics.io/) por supuesto.
-
-Dudas, consultas, insultos, ... [iban@veiss.com](mailto:iban@veiss.com)
+In production I use [pm2](https://pm2.keymetrics.io/).

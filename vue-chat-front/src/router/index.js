@@ -31,8 +31,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next) => {
-
-    //const loggedIn = localStorage.getItem('user')
     
     const loggedIn = store.getters.getLogin
 
