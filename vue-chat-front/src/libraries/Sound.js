@@ -6,7 +6,7 @@
  *       \/      \/|__|       \/              
  * 
  * Class for generate audio
- * Usa https://github.com/Tonejs/Tone.js
+ * Uses https://github.com/Tonejs/Tone.js
  *
  */
 

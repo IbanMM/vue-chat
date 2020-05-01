@@ -1,7 +1,28 @@
-# Realtime chat real with Vue and Node ala WhatsApp
-
+# Realtime chat with Vue and Node ala WhatsApp
 
 Working example: [http://akelarre.veiss.desarrollo.veiss.com/](http://akelarre.veiss.desarrollo.veiss.com/)
+
+Avaliable user:password
+
+~~~ js
+iban:12345
+gorka:12345
+manu:12345
+juancarlos:12345
+txupi:12345
+luis:12345
+edurne:12345 
+angel:12345 
+patricia:12345 
+alex:12345 
+gemma:12345 
+alberto:12345 
+iñigo:12345 
+jonathan:12345 
+nayra:12345 
+fran:12345 
+estíbaliz:12345 
+~~
 
 What is this and what not.
 
@@ -13,7 +34,7 @@ It has two parts :
 
 ## Frontend: Vue.js (the client side)
 
-Its in the folder **vue-chat-front** for development :
+Its in the folder **vue-chat-front** for development:
 
 ~~~ bash
 
