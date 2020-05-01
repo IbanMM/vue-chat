@@ -1,6 +1,6 @@
 # Realtime chat with Vue and Node ala WhatsApp
 
-Working example: [http://akelarre.veiss.desarrollo.veiss.com/](http://akelarre.veiss.desarrollo.veiss.com/)
+Working example: [http://vuechat.amparo.dev/](http://vuechat.amparo.dev/)
 
 Avaliable user:password
 
@@ -65,9 +65,9 @@ Use this software besides from Vue itself:
 
 No data persistence, no database, the server only gets the messages and broacast them to the clients.
 
-User management is a simple class: [User controller](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/controllers/users.controller.js)
+User management is a simple class: [User controller](https://github.com/IbanMM/vue-chat/blob/master/vue-chat-server/controllers/users.controller.js)
 
-User data (is JSON file): [Usuarios](http://giteado.veiss.com/Veiss/vue-chat/src/branch/master/vue-chat-server/data/users.json)
+User data (is JSON file): [Users](https://github.com/IbanMM/vue-chat/blob/master/vue-chat-server/data/users.json)
 
 
 What id does?:

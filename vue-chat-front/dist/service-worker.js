@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.b286f45b39408dd4113075cfbebd6dd9.js"
+  "/precache-manifest.1cfb010242b2632a2460aeb621472c91.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vue-chat-front"});
