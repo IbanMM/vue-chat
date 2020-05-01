@@ -1,6 +1,6 @@
 # Realtime chat with Vue and Node ala WhatsApp
 
-Working example: [http://vuechat.amparo.dev/](http://vuechat.amparo.dev/)
+Working example: [https://vuechat.amparo.dev/](https://vuechat.amparo.dev/)
 
 Avaliable user:password
 
