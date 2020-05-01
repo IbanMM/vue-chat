@@ -62,7 +62,7 @@
                 },
                 loading: false,
                 errors: [],
-                api_url: 'http://',
+                api_url: 'https://',
                 mobile: isMobile
             }
 

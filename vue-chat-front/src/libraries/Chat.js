@@ -36,7 +36,7 @@ class Chat {
         let user = this.vuex.getters.getLoginUser
         let user_name = user.name
 
-        this.socket_url = 'http://'
+        this.socket_url = 'https://'
 
         this.socket_url += `${process.env.VUE_APP_API_DOMAIN}`
 
