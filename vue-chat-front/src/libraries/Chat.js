@@ -46,7 +46,7 @@ class Chat {
 
         }
         
-        this.socket = io.connect( this.socket_url, { query: `user=${user_name}` } )
+        this.socket = io.connect( this.socket_url, { secure: true, query: `user=${user_name}` } )
 
         this.socket.on('getUsersOnline', (data) => {
 
