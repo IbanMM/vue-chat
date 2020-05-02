@@ -3,7 +3,7 @@
     <div ref="app" id="app" >
 
         <ChatHeader />
-
+        <GitHubRibbon />
         <router-view/>
 
         <div class="styx-chat__footer">
@@ -19,12 +19,14 @@
 <script>
 
     import ChatHeader from '@/components/ChatHeader'
+    import GitHubRibbon from '@/components/GitHubRibbon'
 
     export default {
         
         components: {
 
-            ChatHeader
+            ChatHeader,
+            GitHubRibbon
 
         }
 

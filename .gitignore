@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-/dist
+/vue-chat-front/dist/
 
 # local env files
 .env.local

@@ -9,7 +9,7 @@ iban:12345
 gorka:12345
 manu:12345
 juancarlos:12345
-txupi:12345
+javier:12345
 luis:12345
 edurne:12345 
 angel:12345 
@@ -28,7 +28,7 @@ What is this and what not.
 
 Its a chat room ala **WhatsApp** (simplified very much). I build it for fun and learning purposes.
 
-This has no data persistence, no database, the server only gets the messages and broacast them to the clients, the users data is a JSON and the management of who is online is an array.
+This has no data persistence, no database, the server only gets the messages and broacast them to the clients, the users data is a JSON file and the management of who is online is an array.
 
 It has two parts :
 
@@ -67,7 +67,7 @@ No data persistence, no database, the server only gets the messages and broacast
 
 User management is a simple class: [User controller](https://github.com/IbanMM/vue-chat/blob/master/vue-chat-server/controllers/users.controller.js)
 
-User data (is JSON file): [Users](https://github.com/IbanMM/vue-chat/blob/master/vue-chat-server/data/users.json)
+Users data (is a JSON file): [Users](https://github.com/IbanMM/vue-chat/blob/master/vue-chat-server/data/users.json)
 
 
 What id does?:
